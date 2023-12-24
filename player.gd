@@ -1,18 +1,20 @@
 extends CharacterBody3D
 
+var SPEED = 20.0
+const JUMP_VELOCITY = 8
 
-const cspeed = 5
-var SPEED = 5.0
-const JUMP_VELOCITY = 4.5
 const sense = 0.003
 const boost = 1.5
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
-@onready var chicken = $chicken
+@onready var chicken = $sprites
+@onready var anim = $sprites/chickena
+@onready var notanim = $sprites/chickenr
 
 
 #head movement captures
@@ -40,16 +42,17 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("Space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		
-# Theres a better way to do this but I dont know how to do it sooooo
-	if Input.is_action_pressed("LShift"):
-		SPEED = boost * cspeed
-	else:
-		SPEED = cspeed
 
-	
 	chicken.rotation = head.rotation
 	var input_dir = Input.get_vector("A", "D", "W", "S")
+	if input_dir and is_on_floor():
+		anim.show()
+		notanim.hide()
+	else: 
+		notanim.show()
+		anim.hide()
+
+
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED

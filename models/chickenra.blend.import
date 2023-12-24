@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://cvkpojagqpyrn"
-path="res://.godot/imported/chickenra.blend-e750c164bcc4f749f921e922ff5f1686.scn"
+path="res://.godot/imported/chickenra.blend-967f868830e86a757444a4845a8317ad.scn"
 
 [deps]
 
-source_file="res://chickenra.blend"
-dest_files=["res://.godot/imported/chickenra.blend-e750c164bcc4f749f921e922ff5f1686.scn"]
+source_file="res://models/chickenra.blend"
+dest_files=["res://.godot/imported/chickenra.blend-967f868830e86a757444a4845a8317ad.scn"]
 
 [params]
 

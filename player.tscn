@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://r673uqrq2uk4"]
+[gd_scene load_steps=5 format=3 uid="uid://r673uqrq2uk4"]
 
-[ext_resource type="PackedScene" uid="uid://d0hs8rle467mr" path="res://rchicken.tscn" id="1_5xgu0"]
+[ext_resource type="PackedScene" uid="uid://d0hs8rle467mr" path="res://models/rchickena.tscn" id="1_5xgu0"]
 [ext_resource type="Script" path="res://player.gd" id="1_60rsr"]
+[ext_resource type="PackedScene" uid="uid://mnhnf7uec0xu" path="res://models/chickenr.blend" id="3_8eq4h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_325ku"]
 size = Vector3(3.15588, 5.41171, 2.36292)
@@ -13,10 +14,15 @@ script = ExtResource("1_60rsr")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00506592, 1.19978, 0.0105591)
 shape = SubResource("BoxShape3D_325ku")
 
-[node name="chicken" parent="." instance=ExtResource("1_5xgu0")]
-
 [node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0839729, 3.26486, 0.0127361)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.79133)
+
+[node name="sprites" type="Node3D" parent="."]
+
+[node name="chickena" parent="sprites" instance=ExtResource("1_5xgu0")]
+visible = false
+
+[node name="chickenr" parent="sprites" instance=ExtResource("3_8eq4h")]

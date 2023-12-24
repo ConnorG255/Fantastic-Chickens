@@ -383,25 +383,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_8al4a")
 
-[sub_resource type="Animation" id="Animation_3k3fn"]
-resource_name = "legrAction_003"
-length = 0.625
-loop_mode = 1
-tracks/0/type = "rotation_3d"
-tracks/0/imported = true
-tracks/0/enabled = true
-tracks/0/path = NodePath("legr")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = PackedFloat32Array(0, 1, -0.0256104, 1.49535e-06, -8.51077e-06, 0.999672, 0.0333333, 1, -0.0256104, 1.49535e-06, -8.51077e-06, 0.999672, 0.0666667, 1, -0.0618989, 1.80345e-06, -8.45085e-06, 0.998083, 0.1, 1, -0.114806, 2.24961e-06, -8.34317e-06, 0.993388, 0.133333, 1, -0.169699, 2.70866e-06, -8.20563e-06, 0.985496, 0.166667, 1, -0.217212, 3.10276e-06, -8.06487e-06, 0.976124, 0.2, 1, -0.236992, 3.26592e-06, -8.00019e-06, 0.971512, 0.233333, 1, -0.212225, 3.06154e-06, -8.08061e-06, 0.977221, 0.266667, 1, -0.144536, 2.49873e-06, -8.27198e-06, 0.9895, 0.3, 1, -0.0433822, 1.64645e-06, -8.48283e-06, 0.999059, 0.333333, 1, 0.0722634, 6.55973e-07, -8.6162e-06, 0.997386, 0.366667, 1, 0.168476, -1.81198e-07, -8.63924e-06, 0.985706, 0.4, 1, 0.222148, -6.53546e-07, -8.61639e-06, 0.975013, 0.433333, 1, 0.232038, -7.41014e-07, -8.60931e-06, 0.972707, 0.466667, 1, 0.20531, -5.0494e-07, -8.62638e-06, 0.978697, 0.5, 1, 0.157597, -8.5934e-08, -8.64071e-06, 0.987503, 0.533333, 1, 0.100175, 4.14352e-07, -8.6312e-06, 0.99497, 0.566667, 1, 0.049452, 8.52701e-07, -8.59896e-06, 0.998776, 0.6, 1, 0.0150361, 1.14825e-06, -8.56451e-06, 0.999887, 0.625, 1, -0.000224553, 1.27881e-06, -8.54599e-06, 1)
-tracks/1/type = "rotation_3d"
-tracks/1/imported = true
-tracks/1/enabled = true
-tracks/1/path = NodePath("legl")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = PackedFloat32Array(0, 1, -0.000224553, 1.11022e-16, -8.54599e-06, 1)
-
 [sub_resource type="Animation" id="Animation_78von"]
 resource_name = "leglAction_001"
 length = 0.625
@@ -417,6 +398,25 @@ tracks/1/type = "rotation_3d"
 tracks/1/imported = true
 tracks/1/enabled = true
 tracks/1/path = NodePath("legr")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, -0.000224553, 1.11022e-16, -8.54599e-06, 1)
+
+[sub_resource type="Animation" id="Animation_3k3fn"]
+resource_name = "legrAction_003"
+length = 0.625
+loop_mode = 1
+tracks/0/type = "rotation_3d"
+tracks/0/imported = true
+tracks/0/enabled = true
+tracks/0/path = NodePath("legr")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, -0.0256104, 1.49535e-06, -8.51077e-06, 0.999672, 0.0333333, 1, -0.0256104, 1.49535e-06, -8.51077e-06, 0.999672, 0.0666667, 1, -0.0618989, 1.80345e-06, -8.45085e-06, 0.998083, 0.1, 1, -0.114806, 2.24961e-06, -8.34317e-06, 0.993388, 0.133333, 1, -0.169699, 2.70866e-06, -8.20563e-06, 0.985496, 0.166667, 1, -0.217212, 3.10276e-06, -8.06487e-06, 0.976124, 0.2, 1, -0.236992, 3.26592e-06, -8.00019e-06, 0.971512, 0.233333, 1, -0.212225, 3.06154e-06, -8.08061e-06, 0.977221, 0.266667, 1, -0.144536, 2.49873e-06, -8.27198e-06, 0.9895, 0.3, 1, -0.0433822, 1.64645e-06, -8.48283e-06, 0.999059, 0.333333, 1, 0.0722634, 6.55973e-07, -8.6162e-06, 0.997386, 0.366667, 1, 0.168476, -1.81198e-07, -8.63924e-06, 0.985706, 0.4, 1, 0.222148, -6.53546e-07, -8.61639e-06, 0.975013, 0.433333, 1, 0.232038, -7.41014e-07, -8.60931e-06, 0.972707, 0.466667, 1, 0.20531, -5.0494e-07, -8.62638e-06, 0.978697, 0.5, 1, 0.157597, -8.5934e-08, -8.64071e-06, 0.987503, 0.533333, 1, 0.100175, 4.14352e-07, -8.6312e-06, 0.99497, 0.566667, 1, 0.049452, 8.52701e-07, -8.59896e-06, 0.998776, 0.6, 1, 0.0150361, 1.14825e-06, -8.56451e-06, 0.999887, 0.625, 1, -0.000224553, 1.27881e-06, -8.54599e-06, 1)
+tracks/1/type = "rotation_3d"
+tracks/1/imported = true
+tracks/1/enabled = true
+tracks/1/path = NodePath("legl")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = PackedFloat32Array(0, 1, -0.000224553, 1.11022e-16, -8.54599e-06, 1)
@@ -453,7 +453,7 @@ nodes/TimeSeek/position = Vector2(520, 120)
 nodes/output/position = Vector2(980, 120)
 node_connections = [&"Blend2", 0, &"Animation", &"Blend2", 1, &"Animation 2", &"TimeScale", 0, &"TimeSeek", &"TimeSeek", 0, &"Blend2", &"output", 0, &"TimeScale"]
 
-[node name="rchicken" type="Node3D"]
+[node name="rchickena" type="Node3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0111798, 2.38419e-07, 0.0052371)
 
 [node name="Cube" type="MeshInstance3D" parent="."]
@@ -462,7 +462,7 @@ mesh = SubResource("ArrayMesh_dndu7")
 skeleton = NodePath("")
 
 [node name="legr" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.365898, 2.7979e-05, 1.9652e-06, -6.21891e-06, 1.67493, 0.0663512, -7.02179e-07, -0.254661, 0.4364, 0.6, 0.120698, 0)
+transform = Transform3D(0.365898, 2.85354e-05, 1.3463e-06, -6.23464e-06, 1.68824, 0.0369079, -5.96773e-07, -0.141654, 0.43987, 0.6, 0.120698, 0)
 mesh = SubResource("ArrayMesh_jg5ow")
 skeleton = NodePath("")
 
@@ -477,7 +477,7 @@ mesh = SubResource("ArrayMesh_q31nu")
 skeleton = NodePath("")
 
 [node name="legl" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.365816, 0.012621, -0.00870011, -0.00377601, 1.67497, -0.0661216, 0.00672163, 0.254067, 0.436348, -0.6, 0.120698, 0)
+transform = Transform3D(0.36586, 0.0165591, -0.00463647, -0.00388399, 1.68821, -0.0367402, 0.00353204, 0.141186, 0.439859, -0.6, 0.120698, 0)
 mesh = SubResource("ArrayMesh_yi5r4")
 skeleton = NodePath("")
 
@@ -493,5 +493,5 @@ libraries = {
 tree_root = SubResource("AnimationNodeBlendTree_mo5t0")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Blend2/blend_amount = 0.5
-parameters/TimeScale/scale = 1.74
+parameters/TimeScale/scale = 7.0
 parameters/TimeSeek/seek_request = -1.0
