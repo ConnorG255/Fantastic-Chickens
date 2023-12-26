@@ -1,13 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://r673uqrq2uk4"]
+[gd_scene load_steps=6 format=3 uid="uid://r673uqrq2uk4"]
 
 [ext_resource type="PackedScene" uid="uid://d0hs8rle467mr" path="res://models/rchickena.tscn" id="1_5xgu0"]
-[ext_resource type="Script" path="res://player.gd" id="1_60rsr"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_60rsr"]
+[ext_resource type="PackedScene" uid="uid://cm225yghif7jx" path="res://prefabs/rocketlaunch.tscn" id="2_6co20"]
 [ext_resource type="PackedScene" uid="uid://mnhnf7uec0xu" path="res://models/chickenr.blend" id="3_8eq4h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_325ku"]
 size = Vector3(3.15588, 5.41171, 2.36292)
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
+[node name="player" type="CharacterBody3D"]
 script = ExtResource("1_60rsr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -18,7 +19,13 @@ shape = SubResource("BoxShape3D_325ku")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0839729, 3.26486, 0.0127361)
 
 [node name="Camera3D" type="Camera3D" parent="Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.79133)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0301681, 0.033277, -1.83662)
+
+[node name="rocketlaunch" parent="Head/Camera3D" instance=ExtResource("2_6co20")]
+transform = Transform3D(0.577763, 0, 0, 0, 0.664089, 0, 0, 0, 0.645801, 1.92941, -0.737777, 1.05519)
+
+[node name="shootingpoint" type="Node3D" parent="Head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0839729, -0.168918, -2.17429)
 
 [node name="sprites" type="Node3D" parent="."]
 

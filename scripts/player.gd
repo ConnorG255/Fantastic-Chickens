@@ -16,13 +16,18 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var anim = $sprites/chickena
 @onready var notanim = $sprites/chickenr
 
+@onready var spoint = $Head/Camera3D/shootingpoint
+@onready var pewanim = $Head/Camera3D/rocketlaunch/AnimationPlayer
+var bullet = preload("res://prefabs/bullet.tscn")
+
+
 
 #head movement captures
 func _ready():
-	
 	camera.current = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	pass
+	
 #head speeeen
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -36,22 +41,31 @@ func _process(delta):
 		
 
 func _physics_process(delta):
+	if Input.is_action_pressed("LMB"):
+		if !pewanim.is_playing():
+			pewanim.play("gunmove")
+			var b = bullet.instantiate()
+			b.position = spoint.global_position
+			b.transform.basis =  spoint.global_transform.basis
+			get_parent().add_child(b)
+	
+	
+	# Movement
 	if not is_on_floor():
 		velocity.y -= gravity * delta
-
-
+		
 	if Input.is_action_just_pressed("Space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+		
 	chicken.rotation = head.rotation
 	var input_dir = Input.get_vector("A", "D", "W", "S")
+	
 	if input_dir and is_on_floor():
 		anim.show()
 		notanim.hide()
 	else: 
 		notanim.show()
 		anim.hide()
-
 
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
