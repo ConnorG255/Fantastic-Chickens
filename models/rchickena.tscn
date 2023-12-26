@@ -462,7 +462,7 @@ mesh = SubResource("ArrayMesh_dndu7")
 skeleton = NodePath("")
 
 [node name="legr" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.365898, 2.78897e-05, 2.04716e-06, -6.21681e-06, 1.67256, 0.0702746, -7.1633e-07, -0.269716, 0.435786, 0.6, 0.120698, 0)
+transform = Transform3D(0.365898, 2.7073e-05, 2.68109e-06, -6.20018e-06, 1.64936, 0.100846, -8.27808e-07, -0.38705, 0.429742, 0.6, 0.120698, 0)
 mesh = SubResource("ArrayMesh_jg5ow")
 skeleton = NodePath("")
 
@@ -477,7 +477,7 @@ mesh = SubResource("ArrayMesh_q31nu")
 skeleton = NodePath("")
 
 [node name="legl" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.365796, 0.017079, -0.00939122, -0.00487956, 1.67251, -0.0701309, 0.00709896, 0.269574, 0.435707, -0.6, 0.120698, 0)
+transform = Transform3D(0.365704, 0.0141186, -0.0138561, -0.00559231, 1.64928, -0.100728, 0.0104853, 0.387212, 0.429545, -0.6, 0.120698, 0)
 mesh = SubResource("ArrayMesh_yi5r4")
 skeleton = NodePath("")
 

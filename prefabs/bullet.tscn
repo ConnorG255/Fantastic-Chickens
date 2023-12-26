@@ -10,6 +10,7 @@
 radius = 0.542218
 
 [node name="bullet" type="RigidBody3D"]
+collision_layer = 0
 mass = 0.2
 script = ExtResource("1_urgo1")
 
@@ -20,6 +21,9 @@ shape = SubResource("SphereShape3D_ws053")
 mesh = SubResource("SphereMesh_obhgy")
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("SphereShape3D_pkdst")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
