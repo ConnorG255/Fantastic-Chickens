@@ -1,21 +1,26 @@
 extends RigidBody3D
 
-var bulletspeed = 50
+var bulletspeed = 1000
+var force = 10
+
+	
 func _ready():
-	pass
-	#may want to use apply force but need to get it so it works with the rotation
-	
-func _physics_process(delta):
-	position += transform.basis * Vector3(0,0,-bulletspeed) * delta
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+	#apply_force(Vector3(0,0,-bulletspeed), Vector3(0,0,0))
+	#apply_force(transform.basis.z, -transform.basis.z * bulletspeed)
 	pass
 
+	
 
+
+
+ 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("player"):
-		#damage
+		var direct = get_linear_velocity()
+		body.velocity.x +=  direct.x * force
+		body.velocity.z +=  direct.z * force
+		#body.apply_force(transform, direction * force)
+		print(direct)
 		queue_free()
 	else:
 		queue_free()
