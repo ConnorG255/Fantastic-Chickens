@@ -26,20 +26,27 @@ var canmove = true
 var hit = false
 
 
+
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
 #head movement captures
 func _ready():
+	if not is_multiplayer_authority(): return
 	camera.current = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
 	pass
 	
 #head speeeen
 func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
 	if event is InputEventMouseMotion:
 		head.rotate_y(-event.relative.x * sense)
 		camera.rotate_x(-event.relative.y * sense)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
 	
 func _process(delta):
+	if not is_multiplayer_authority(): return
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 		
@@ -49,6 +56,7 @@ func _process(delta):
 
 
 func _physics_process(delta):
+	if not is_multiplayer_authority(): return
 	if Input.is_action_pressed("LMB"):
 		if !pewanim.is_playing():
 			pewanim.play("gunmove")
@@ -90,7 +98,7 @@ func _physics_process(delta):
 
 	move_and_slide()
 
- 
+
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("bullet"):
 		canmove = false
