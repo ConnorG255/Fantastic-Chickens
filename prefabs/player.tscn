@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://r673uqrq2uk4"]
+[gd_scene load_steps=7 format=3 uid="uid://r673uqrq2uk4"]
 
 [ext_resource type="PackedScene" uid="uid://d0hs8rle467mr" path="res://models/rchickena.tscn" id="1_5xgu0"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_60rsr"]
@@ -6,13 +6,16 @@
 [ext_resource type="PackedScene" uid="uid://mnhnf7uec0xu" path="res://models/chickenr.blend" id="3_8eq4h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_325ku"]
-size = Vector3(3.15588, 5.41171, 2.36292)
+size = Vector3(2.36026, 5.47036, 2.36292)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m0dn0"]
+size = Vector3(2.95221, 6.58267, 3.16574)
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_60rsr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00506592, 1.19978, 0.0105591)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0257421, 1.17046, 0.0105591)
 shape = SubResource("BoxShape3D_325ku")
 
 [node name="Head" type="Node3D" parent="."]
@@ -33,3 +36,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0839729, -0.168918, -2.1742
 visible = false
 
 [node name="chickenr" parent="sprites" instance=ExtResource("3_8eq4h")]
+
+[node name="Area3D" type="Area3D" parent="." groups=["player"]]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00137329, 1.16005, -0.0583038)
+shape = SubResource("BoxShape3D_m0dn0")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

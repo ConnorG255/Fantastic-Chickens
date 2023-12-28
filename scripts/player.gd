@@ -20,7 +20,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var spoint = $Head/Camera3D/shootingpoint
 @onready var pewanim = $Head/Camera3D/rocketlaunch/AnimationPlayer
 var bullet = preload("res://prefabs/bullet.tscn")
-
+var directionn
+var forcemulti = 1
 
 
 #head movement captures
@@ -40,6 +41,10 @@ func _process(delta):
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 		
+
+
+
+
 
 func _physics_process(delta):
 	if Input.is_action_pressed("LMB"):
@@ -70,12 +75,20 @@ func _physics_process(delta):
 		notanim.show()
 		anim.hide()
 
-	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+	directionn = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	if directionn:
+		velocity.x = directionn.x * SPEED
+		velocity.z = directionn.z * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
+
+ 
+func _on_area_3d_body_entered(body):
+	if body.is_in_group("bullet"):
+		var direct = body.get_linear_velocity()
+		position += direct * 0.1 * forcemulti
+		body.queue_free()
+	pass # Replace with function body.

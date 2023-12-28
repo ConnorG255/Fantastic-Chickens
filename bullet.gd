@@ -11,17 +11,9 @@ func _ready():
 
 	
 
-
+func _on_area_3d_body_entered(body):
+	
+	pass # Replace with function body.
 
  
-func _on_area_3d_body_entered(body):
-	if body.is_in_group("player"):
-		var direct = get_linear_velocity()
-		body.velocity.x +=  direct.x * force
-		body.velocity.z +=  direct.z * force
-		#body.apply_force(transform, direction * force)
-		print(direct)
-		queue_free()
-	else:
-		queue_free()
-	pass # Replace with function body.
+
