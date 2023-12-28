@@ -22,6 +22,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var bullet = preload("res://prefabs/bullet.tscn")
 var directionn
 var forcemulti = 1
+var canmove = true
+var hit = false
 
 
 #head movement captures
@@ -58,9 +60,11 @@ func _physics_process(delta):
 			get_parent().add_child(b)
 	
 	
+	
 	# Movement
 	if not is_on_floor():
 		velocity.y -= gravity * delta
+	
 		
 	if Input.is_action_just_pressed("Space") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -75,20 +79,28 @@ func _physics_process(delta):
 		notanim.show()
 		anim.hide()
 
-	directionn = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
-	if directionn:
-		velocity.x = directionn.x * SPEED
-		velocity.z = directionn.z * SPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+	if canmove:
+		directionn = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		if directionn:
+			velocity.x = directionn.x * SPEED
+			velocity.z = directionn.z * SPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED)
+			velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
 
  
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("bullet"):
+		canmove = false
+		hit = true
 		var direct = body.get_linear_velocity()
-		position += direct * 0.1 * forcemulti
+		velocity.x += direct.x * 0.1 * forcemulti
+		velocity.z += direct.z * 0.1 * forcemulti
+		velocity.y += 10 * forcemulti
+		forcemulti += 1 
 		body.queue_free()
+		
+		
 	pass # Replace with function body.
