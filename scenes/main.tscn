@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://betyu7qdnt81g"]
+[gd_scene load_steps=6 format=3 uid="uid://betyu7qdnt81g"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_ndk6p"]
+[ext_resource type="PackedScene" uid="uid://imyx0j2xkq7r" path="res://prefabs/barrier.tscn" id="2_yqkm1"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_axepn"]
 sky_top_color = Color(0.792157, 0.941176, 1, 1)
@@ -76,6 +77,26 @@ text = "Join"
 layout_mode = 2
 placeholder_text = "Enter Address"
 alignment = 1
+
+[node name="barriers" type="Node3D" parent="."]
+
+[node name="Barrier4" parent="barriers" instance=ExtResource("2_yqkm1")]
+transform = Transform3D(428.782, 0, 0, 0, 1109.48, 0, 0, 0, 1, 0, 0, 289.048)
+
+[node name="Barrier2" parent="barriers" instance=ExtResource("2_yqkm1")]
+transform = Transform3D(457.096, 0, 0, 0, 1045.09, 0, 0, 0, 109.831, 69.224, -0.00849615, -278.779)
+
+[node name="Barrier" parent="barriers" instance=ExtResource("2_yqkm1")]
+transform = Transform3D(385.646, 0, 0, 0, 8.09432, 0, 0, 0, 617.276, 37.2617, -46.9511, -12.6495)
+
+[node name="Barrier3" parent="barriers" instance=ExtResource("2_yqkm1")]
+transform = Transform3D(8.34137, 0, 0, 0, 1084.8, 0, 0, 0, 794.466, -144.828, -0.972051, -67.0979)
+
+[node name="Barrier5" parent="barriers" instance=ExtResource("2_yqkm1")]
+transform = Transform3D(385.646, 0, 0, 0, 8.09432, 0, 0, 0, 617.276, 37.2617, 414.55, -12.6495)
+
+[node name="Barrier6" parent="barriers" instance=ExtResource("2_yqkm1")]
+transform = Transform3D(8.34137, 0, 0, 0, 1084.8, 0, 0, 0, 794.466, 208.703, -0.972051, -67.0979)
 
 [connection signal="pressed" from="CanvasLayer/main menu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/main menu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

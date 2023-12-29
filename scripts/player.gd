@@ -115,6 +115,15 @@ func _on_area_3d_body_entered(body):
 		
 		forcemulti += 1 
 		despawnbullet(body)
+	
 		
 		
+	pass # Replace with function body.
+
+
+func _on_area_3d_area_entered(area):
+	if area.is_in_group("barrier"):
+		forcemulti = 0
+		position = Vector3.ZERO
+		self.velocity = Vector3.ZERO
 	pass # Replace with function body.

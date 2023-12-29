@@ -9,7 +9,7 @@
 size = Vector3(1.53252, 5.11313, 1.29675)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0dn0"]
-size = Vector3(2.95221, 6.58267, 3.16574)
+size = Vector3(3.52736, 6.28312, 3.16574)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_pw1kw"]
 properties/0/path = NodePath(".:position")
@@ -60,10 +60,11 @@ visible = false
 collision_layer = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00137329, 1.16005, -0.0583038)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0106583, 1.30983, -0.0583038)
 shape = SubResource("BoxShape3D_m0dn0")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_pw1kw")
 
+[connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
