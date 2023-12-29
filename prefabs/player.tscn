@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://mnhnf7uec0xu" path="res://models/chickenr.blend" id="3_8eq4h"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_325ku"]
-size = Vector3(2.36026, 5.47036, 2.36292)
+size = Vector3(1.53252, 5.11313, 1.29675)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_m0dn0"]
 size = Vector3(2.95221, 6.58267, 3.16574)
@@ -35,7 +35,7 @@ properties/5/replication_mode = 1
 script = ExtResource("1_60rsr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0257421, 1.17046, 0.0105591)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0134874, 1.11572, -0.0219398)
 shape = SubResource("BoxShape3D_325ku")
 
 [node name="Head" type="Node3D" parent="."]

@@ -23,7 +23,6 @@ var bullet = preload("res://prefabs/bullet.tscn")
 var directionn
 var forcemulti = 1
 var canmove = true
-var hit = false
 
 
 
@@ -56,6 +55,7 @@ func shoot():
 	var b = bullet.instantiate()
 	b.position = spoint.global_position
 	b.transform.basis =  spoint.global_transform.basis
+	#b.name = "bullet" + name
 	b.apply_force(-spoint.global_transform.basis.z.normalized() * bulletspeed)
 	get_parent().add_child(b, true)
 
@@ -99,15 +99,20 @@ func despawnbullet(b):
 	b.queue_free()
 	
 	
-
+func hit():
+	await(get_tree().create_timer(1).timeout)
+	canmove = true 
+	
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("bullet"):
 		canmove = false
-		hit = true
+		
 		var direct = body.get_linear_velocity()
+		hit();
+		velocity.y += 2 * forcemulti
 		velocity.x += direct.x * 0.1 * forcemulti
 		velocity.z += direct.z * 0.1 * forcemulti
-		velocity.y += 10 * forcemulti
+		
 		forcemulti += 1 
 		despawnbullet(body)
 		
