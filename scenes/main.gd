@@ -1,4 +1,4 @@
-extends Node
+extends Node3D
 
 @onready var main_menu = $"CanvasLayer/main menu"
 @onready var address = $"CanvasLayer/main menu/MarginContainer/VBoxContainer/address"
@@ -11,7 +11,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 func addPlayer(peer_id):
 	var player = aPlayer.instantiate()
 	player.name = str(peer_id)
-	add_child(player)
+	get_node("/root/main/Network").add_child(player)
 	
 	
 func _on_join_pressed():

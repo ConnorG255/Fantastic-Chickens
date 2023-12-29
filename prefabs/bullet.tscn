@@ -9,7 +9,7 @@
 [sub_resource type="SphereShape3D" id="SphereShape3D_pkdst"]
 radius = 0.611702
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3x8qc"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_e6m6y"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
@@ -31,6 +31,6 @@ collision_layer = 0
 shape = SubResource("SphereShape3D_pkdst")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_3x8qc")
+replication_config = SubResource("SceneReplicationConfig_e6m6y")
 
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

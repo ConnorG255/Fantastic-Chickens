@@ -49,25 +49,21 @@ func _process(delta):
 	if not is_multiplayer_authority(): return
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
-		
 
-
-
-
+@rpc("any_peer", "call_local", "reliable")
+func shoot():
+	pewanim.play("gunmove")
+	var b = bullet.instantiate()
+	b.position = spoint.global_position
+	b.transform.basis =  spoint.global_transform.basis
+	b.apply_force(-spoint.global_transform.basis.z.normalized() * bulletspeed)
+	get_parent().add_child(b, true)
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	if Input.is_action_pressed("LMB"):
 		if !pewanim.is_playing():
-			pewanim.play("gunmove")
-			var b = bullet.instantiate()
-			b.position = spoint.global_position
-			b.transform.basis =  spoint.global_transform.basis
-			#b.linear_velocity = Vector3(bulletspeed,0,0)
-			b.apply_force(-spoint.global_transform.basis.z.normalized() * bulletspeed)
-			get_parent().add_child(b)
-	
-	
+			shoot.rpc()
 	
 	# Movement
 	if not is_on_floor():
@@ -98,6 +94,11 @@ func _physics_process(delta):
 
 	move_and_slide()
 
+@rpc("any_peer")
+func despawnbullet(b):
+	b.queue_free()
+	
+	
 
 func _on_area_3d_body_entered(body):
 	if body.is_in_group("bullet"):
@@ -108,7 +109,7 @@ func _on_area_3d_body_entered(body):
 		velocity.z += direct.z * 0.1 * forcemulti
 		velocity.y += 10 * forcemulti
 		forcemulti += 1 
-		body.queue_free()
+		despawnbullet(body)
 		
 		
 	pass # Replace with function body.
