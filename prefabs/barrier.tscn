@@ -1,13 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://imyx0j2xkq7r"]
+[gd_scene load_steps=3 format=3 uid="uid://imyx0j2xkq7r"]
 
-[ext_resource type="Script" path="res://prefabs/barrier.gd" id="1_a8tpf"]
 [ext_resource type="Material" uid="uid://dyip8j4in2k8v" path="res://material/barrier.tres" id="1_rf6pn"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_riik7"]
 size = Vector3(1.34814, 1.30008, 1.25232)
 
 [node name="Barrier" type="Node3D" groups=["barrier"]]
-script = ExtResource("1_a8tpf")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 material_override = ExtResource("1_rf6pn")
