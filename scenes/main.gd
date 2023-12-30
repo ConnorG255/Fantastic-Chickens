@@ -22,7 +22,7 @@ func remove_player(peer_id):
 
 func _on_join_pressed():
 	main_menu.hide()
-	
+	#address.text
 	enet_peer.create_client("localhost", PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	
@@ -42,5 +42,5 @@ func _on_host_pressed():
 func upnp_setup():
 	var upnp = UPNP.new()
 	var discoverupnp = upnp.discover()
-	print("Working: " % upnp.query_external_address())
+	print("Working: %s" % upnp.query_external_address())
 

@@ -1,12 +1,12 @@
 extends CharacterBody3D
 
-var SPEED = 20.0
+var SPEED = 30.0
 const JUMP_VELOCITY = 8
 
 const sense = 0.003
 const boost = 1.5
 
-var bulletspeed = 1000
+var bulletspeed = 2000
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -23,6 +23,8 @@ var bullet = preload("res://prefabs/bullet.tscn")
 var directionn
 var forcemulti = 1
 var canmove = true
+
+@onready var text = $Control/Label
 
 
 
@@ -46,6 +48,7 @@ func _unhandled_input(event):
 	
 func _process(delta):
 	if not is_multiplayer_authority(): return
+	text.text = str(forcemulti) + "x Knockback"
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
@@ -110,8 +113,8 @@ func _on_area_3d_body_entered(body):
 		var direct = body.get_linear_velocity()
 		hit();
 		velocity.y += 2 * forcemulti
-		velocity.x += direct.x * 0.1 * forcemulti
-		velocity.z += direct.z * 0.1 * forcemulti
+		velocity.x += direct.x * 0.05 * forcemulti
+		velocity.z += direct.z * 0.05 * forcemulti
 		
 		forcemulti += 1 
 		despawnbullet(body)
