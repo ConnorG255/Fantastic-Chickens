@@ -28,9 +28,11 @@ var canmove = true
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
+	
 #head movement captures
 func _ready():
 	if not is_multiplayer_authority(): return
+	
 	camera.current = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 

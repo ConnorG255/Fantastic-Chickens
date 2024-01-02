@@ -18,14 +18,8 @@ sky = SubResource("Sky_gk45d")
 tonemap_mode = 2
 glow_enabled = true
 
-[node name="main" type="Node3D"]
+[node name="main" type="Node"]
 script = ExtResource("1_ndk6p")
-
-[node name="Network" type="Node" parent="."]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://prefabs/player.tscn", "res://prefabs/bullet.tscn")
-spawn_path = NodePath("../Network")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
@@ -97,6 +91,10 @@ transform = Transform3D(385.646, 0, 0, 0, 8.09432, 0, 0, 0, 617.276, 37.2617, 41
 
 [node name="Barrier6" parent="barriers" instance=ExtResource("2_yqkm1")]
 transform = Transform3D(8.34137, 0, 0, 0, 1084.8, 0, 0, 0, 794.466, 208.703, -0.972051, -67.0979)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://prefabs/player.tscn", "res://prefabs/bullet.tscn")
+spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/main menu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/main menu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
