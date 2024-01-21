@@ -19,6 +19,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var spoint = $Head/Camera3D/shootingpoint
 @onready var pewanim = $Head/Camera3D/rocketlaunch/AnimationPlayer
+@onready var combox = $combox
+
 var bullet = preload("res://prefabs/bullet.tscn")
 var directionn
 var forcemulti = 1
@@ -48,6 +50,8 @@ func _unhandled_input(event):
 	
 func _process(delta):
 	if not is_multiplayer_authority(): return
+	
+	
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()
 
@@ -63,6 +67,7 @@ func shoot():
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
+	combox.text = "Knockback: " + str(forcemulti)+ "x"
 	if Input.is_action_pressed("LMB"):
 		if !pewanim.is_playing():
 			shoot.rpc()
