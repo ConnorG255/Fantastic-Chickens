@@ -30,6 +30,12 @@ properties/4/replication_mode = 1
 properties/5/path = NodePath("Head/Camera3D:rotation")
 properties/5/spawn = true
 properties/5/replication_mode = 1
+properties/6/path = NodePath("sprites/chickena:visible")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("sprites/chickenr:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
 
 [node name="player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_60rsr")

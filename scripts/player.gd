@@ -5,6 +5,7 @@ const JUMP_VELOCITY = 8
 
 const sense = 0.003
 const boost = 1.5
+@export var weight = 1.65
 
 var bulletspeed = 1000
 
@@ -74,7 +75,7 @@ func _physics_process(delta):
 	
 	# Movement
 	if not is_on_floor():
-		velocity.y -= gravity * delta
+		velocity.y -= gravity * delta * weight
 	
 		
 	if Input.is_action_just_pressed("Space") and is_on_floor():
