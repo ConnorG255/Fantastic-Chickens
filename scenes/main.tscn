@@ -28,7 +28,7 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jc4f7")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["world"]]
 transform = Transform3D(2.27693, 0, 0, 0, 0.937723, 0, 0, 0, 13.601, 13.5437, -0.148598, -50.4506)
 use_collision = true
 size = Vector3(66.3125, 0.298828, 15.3114)
@@ -70,6 +70,11 @@ text = "Join"
 [node name="address" type="LineEdit" parent="CanvasLayer/main menu/MarginContainer/VBoxContainer"]
 layout_mode = 2
 placeholder_text = "Enter Address"
+alignment = 1
+
+[node name="Username" type="LineEdit" parent="CanvasLayer/main menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Enter Username"
 alignment = 1
 
 [node name="barriers" type="Node3D" parent="."]

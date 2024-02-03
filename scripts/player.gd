@@ -1,6 +1,8 @@
 extends CharacterBody3D
 
 var SPEED = 20.0
+var sprintsped = 30.0
+var ogspeed = 20.0
 const JUMP_VELOCITY = 8
 
 const sense = 0.003
@@ -26,6 +28,10 @@ var bullet = preload("res://prefabs/bullet.tscn")
 var directionn
 var forcemulti = 1
 var canmove = true
+
+
+
+@export var pusername = ""
 
 
 
@@ -93,6 +99,11 @@ func _physics_process(delta):
 
 	if canmove:
 		directionn = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+		
+		if(Input.is_action_pressed("LShift")):
+			SPEED = sprintsped
+		else: SPEED = ogspeed
+		
 		if directionn:
 			velocity.x = directionn.x * SPEED
 			velocity.z = directionn.z * SPEED
