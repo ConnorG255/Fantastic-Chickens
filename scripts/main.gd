@@ -20,6 +20,7 @@ func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
 	player.pusername = str(theutext)
+	print(str(username))
 	Global.players.append(player.pusername)
 	Global.playercounter += 1
 	print(player.pusername)
@@ -65,9 +66,12 @@ func _on_host_pressed():
 func _on_join_pressed():
 	if not is_multiplayer_authority(): return
 	main_menu.hide()
+	# Cant have the username text update in player, needs to be here/ after, but also has to 
+	#actually go into the add_player function
 	theutext = username.text
 	#decode(address_entry.text)
 	enet_peer.create_client("localhost", PORT)
+	
 	multiplayer.multiplayer_peer = enet_peer
 	pass # Replace with function body.
 
