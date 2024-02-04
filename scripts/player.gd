@@ -57,7 +57,7 @@ func _unhandled_input(event):
 	
 func _process(delta):
 	if not is_multiplayer_authority(): return
-	
+	#print(pusername)
 	
 	if Input.is_action_pressed("ui_cancel"):
 		get_tree().quit()

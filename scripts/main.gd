@@ -4,7 +4,7 @@ extends Node
 @onready var main_menu = $"CanvasLayer/main menu"
 @onready var address_entry = $"CanvasLayer/main menu/MarginContainer/VBoxContainer/address"
 @onready var username = $"CanvasLayer/main menu/MarginContainer/VBoxContainer/Username"
-
+var theutext 
 
 const Player = preload("res://prefabs/player.tscn")
 const PORT = 9970
@@ -19,7 +19,9 @@ func _unhandled_input(event):
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
-	player.pusername = str(username.text)
+	player.pusername = str(theutext)
+	Global.players.append(player.pusername)
+	Global.playercounter += 1
 	print(player.pusername)
 	add_child(player)
 	
@@ -43,11 +45,11 @@ func upnp_setup():
 	
 	print("Working: %s" % code(upnp.query_external_address()))
 
-
+#
 func _on_host_pressed():
 	main_menu.hide()
-
-	
+	if not is_multiplayer_authority(): return
+	theutext = username.text
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
@@ -61,8 +63,9 @@ func _on_host_pressed():
 
 
 func _on_join_pressed():
+	if not is_multiplayer_authority(): return
 	main_menu.hide()
-
+	theutext = username.text
 	#decode(address_entry.text)
 	enet_peer.create_client("localhost", PORT)
 	multiplayer.multiplayer_peer = enet_peer
