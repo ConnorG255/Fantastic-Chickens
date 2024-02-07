@@ -22,18 +22,23 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var spoint = $Head/Camera3D/shootingpoint
 @onready var pewanim = $Head/Camera3D/rocketlaunch/AnimationPlayer
-@onready var combox = $combox
+@onready var combox = $Notpaused/combox
+
 
 var bullet = preload("res://prefabs/bullet.tscn")
 var directionn
 var forcemulti = 1
 var canmove = true
+var canshoot: bool = true
+var canrot: bool = true
 
 
 
 @export var pusername = ""
 
-
+@onready var notpaused = $Notpaused
+@onready var pause = $Pause
+var paused: bool = true
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -50,7 +55,7 @@ func _ready():
 #head speeeen
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
-	if event is InputEventMouseMotion:
+	if event is InputEventMouseMotion and canrot:
 		head.rotate_y(-event.relative.x * sense)
 		camera.rotate_x(-event.relative.y * sense)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
@@ -60,7 +65,17 @@ func _process(delta):
 	#print(pusername)
 	
 	if Input.is_action_pressed("ui_cancel"):
-		get_tree().quit()
+		paused = true
+		canmove = false 
+		canshoot = false
+		canrot = false
+		
+		pause.show()
+		notpaused.hide()
+		
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
+		
 
 @rpc("any_peer", "call_local", "reliable")
 func shoot():
@@ -76,7 +91,7 @@ func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	combox.text = "Knockback: " + str(forcemulti)+ "x"
 	if Input.is_action_pressed("LMB"):
-		if !pewanim.is_playing():
+		if !pewanim.is_playing() and canshoot:
 			shoot.rpc()
 	
 	# Movement

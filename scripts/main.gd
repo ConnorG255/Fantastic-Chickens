@@ -10,9 +10,7 @@ const Player = preload("res://prefabs/player.tscn")
 const PORT = 9970
 var enet_peer = ENetMultiplayerPeer.new()
 
-func _unhandled_input(event):
-	if Input.is_action_just_pressed("quit"):
-		get_tree().quit()
+
 
 
 
