@@ -29,16 +29,15 @@ var bullet = preload("res://prefabs/bullet.tscn")
 var directionn
 var forcemulti = 1
 var canmove = true
-var canshoot: bool = true
-var canrot: bool = true
+# got rid of individually having bools for every single canrot and canshoot ect. 
 
 
 
-@export var pusername = ""
+@export var pusername = "" 
 
 @onready var notpaused = $Notpaused
 @onready var pause = $Pause
-var paused: bool = true
+var paused: bool = false
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -55,7 +54,7 @@ func _ready():
 #head speeeen
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
-	if event is InputEventMouseMotion and canrot:
+	if event is InputEventMouseMotion and paused == false:
 		head.rotate_y(-event.relative.x * sense)
 		camera.rotate_x(-event.relative.y * sense)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-90), deg_to_rad(90))
@@ -64,18 +63,22 @@ func _process(delta):
 	if not is_multiplayer_authority(): return
 	#print(pusername)
 	
-	if Input.is_action_pressed("ui_cancel"):
+	#Im not completely sure why it isnt working in  a function rn
+	#but if I find out then itll be a function, but it was originally
+	#like this, and worked well soooo
+	if Input.is_action_just_pressed("ui_cancel") and paused == false:
 		paused = true
-		canmove = false 
-		canshoot = false
-		canrot = false
+		
+		#would instantly unpause
+		await(get_tree().create_timer(0.1).timeout)
 		
 		pause.show()
 		notpaused.hide()
-		
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 		
 		
+	if Input.is_action_just_pressed("ui_cancel") and paused == true:
+		unpause()
 
 @rpc("any_peer", "call_local", "reliable")
 func shoot():
@@ -87,11 +90,12 @@ func shoot():
 	b.apply_force(-spoint.global_transform.basis.z.normalized() * bulletspeed)
 	get_parent().add_child(b, true)
 
+
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
 	combox.text = "Knockback: " + str(forcemulti)+ "x"
 	if Input.is_action_pressed("LMB"):
-		if !pewanim.is_playing() and canshoot:
+		if !pewanim.is_playing() and paused == false:
 			shoot.rpc()
 	
 	# Movement
@@ -112,7 +116,7 @@ func _physics_process(delta):
 		notanim.show()
 		anim.hide()
 
-	if canmove:
+	if canmove and paused == false:
 		directionn = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 		
 		if(Input.is_action_pressed("LShift")):
@@ -161,3 +165,16 @@ func _on_area_3d_area_entered(area):
 		position = Vector3.ZERO
 		self.velocity = Vector3.ZERO
 	pass # Replace with function body.
+
+
+func _on_unpausebutton_button_down():
+	unpause()
+	pass # Replace with function body.
+
+func unpause():
+	paused = false
+	
+		
+	pause.hide()
+	notpaused.show()
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

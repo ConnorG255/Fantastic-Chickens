@@ -109,6 +109,24 @@ text = "Knockback:
 "
 
 [node name="Pause" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="unpausebutton" type="Button" parent="Pause"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -50.0
+offset_right = 200.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "unpause"
 
 [connection signal="area_entered" from="Area3D" to="." method="_on_area_3d_area_entered"]
 [connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
+[connection signal="button_down" from="Pause/unpausebutton" to="." method="_on_unpausebutton_button_down"]
