@@ -28,11 +28,6 @@ shadow_enabled = true
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_jc4f7")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." groups=["world"]]
-transform = Transform3D(2.27693, 0, 0, 0, 0.937723, 0, 0, 0, 13.601, 13.5437, -0.148598, -50.4506)
-use_collision = true
-size = Vector3(66.3125, 0.298828, 15.3114)
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="main menu" type="PanelContainer" parent="CanvasLayer"]
@@ -72,11 +67,6 @@ layout_mode = 2
 placeholder_text = "Enter Address"
 alignment = 1
 
-[node name="Username" type="LineEdit" parent="CanvasLayer/main menu/MarginContainer/VBoxContainer"]
-layout_mode = 2
-placeholder_text = "Enter Username"
-alignment = 1
-
 [node name="barriers" type="Node3D" parent="."]
 
 [node name="Barrier4" parent="barriers" instance=ExtResource("2_yqkm1")]
@@ -100,6 +90,34 @@ transform = Transform3D(8.34137, 0, 0, 0, 1084.8, 0, 0, 0, 794.466, 208.703, -0.
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 _spawnable_scenes = PackedStringArray("res://prefabs/player.tscn", "res://prefabs/bullet.tscn")
 spawn_path = NodePath("..")
+
+[node name="Playing area" type="Node3D" parent="."]
+transform = Transform3D(1.47916, 0, 0, 0, 1, 0, 0, 0, 1.97639, 19.6274, -0.193436, 103.021)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Playing area" groups=["world"]]
+transform = Transform3D(2.27693, 0, 0, 0, 0.937723, 0, 0, 0, 13.601, 13.5437, -0.148598, -50.4506)
+use_collision = true
+size = Vector3(66.3125, 0.298828, 15.3114)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Playing area" groups=["world"]]
+transform = Transform3D(20.5916, 0, 0, 0, 37.708, 0, 0, 0, 11.5343, 0, 18.8027, 0)
+use_collision = true
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Playing area" groups=["world"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.335, 3.18085, -126.41)
+size = Vector3(68.3443, 4.84302, 1)
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Playing area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 54.4942, 38.3723, -83.9719)
+use_collision = true
+radius = 3.18428
+height = 77.3386
+
+[node name="CSGTorus3D" type="CSGTorus3D" parent="Playing area"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -83.4486)
+use_collision = true
+inner_radius = 0.0762313
+outer_radius = 15.5455
 
 [connection signal="pressed" from="CanvasLayer/main menu/MarginContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="CanvasLayer/main menu/MarginContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]

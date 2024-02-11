@@ -3,7 +3,7 @@ extends Node
 
 @onready var main_menu = $"CanvasLayer/main menu"
 @onready var address_entry = $"CanvasLayer/main menu/MarginContainer/VBoxContainer/address"
-@onready var username = $"CanvasLayer/main menu/MarginContainer/VBoxContainer/Username"
+
 var theutext 
 
 const Player = preload("res://prefabs/player.tscn")
@@ -17,11 +17,9 @@ var enet_peer = ENetMultiplayerPeer.new()
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
-	player.pusername = str(theutext)
-	print(str(username))
-	Global.players.append(player.pusername)
+	Global.players.append(peer_id)
 	Global.playercounter += 1
-	print(player.pusername)
+	
 	add_child(player)
 	
 
@@ -43,12 +41,12 @@ func upnp_setup():
 		push_error("UPNP error: %d" % err)
 	
 	print("Working: %s" % code(upnp.query_external_address()))
+	Global.code = str(code(upnp.query_external_address()))
 
 #
 func _on_host_pressed():
 	main_menu.hide()
 	if not is_multiplayer_authority(): return
-	theutext = username.text
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
@@ -64,9 +62,7 @@ func _on_host_pressed():
 func _on_join_pressed():
 	if not is_multiplayer_authority(): return
 	main_menu.hide()
-	# Cant have the username text update in player, needs to be here/ after, but also has to 
-	#actually go into the add_player function
-	theutext = username.text
+	
 	#decode(address_entry.text)
 	enet_peer.create_client("localhost", PORT)
 	

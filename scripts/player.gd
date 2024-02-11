@@ -39,6 +39,10 @@ var canmove = true
 @onready var pause = $Pause
 var paused: bool = false
 
+
+@onready var label = $Pause/Label
+
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 	
@@ -61,6 +65,7 @@ func _unhandled_input(event):
 	
 func _process(delta):
 	if not is_multiplayer_authority(): return
+	label.text = "Join Code: " + Global.code
 	#print(pusername)
 	
 	#Im not completely sure why it isnt working in  a function rn
@@ -178,3 +183,8 @@ func unpause():
 	pause.hide()
 	notpaused.show()
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+
+func _on_quit_button_down():
+	get_tree().quit()
+	pass # Replace with function body.
