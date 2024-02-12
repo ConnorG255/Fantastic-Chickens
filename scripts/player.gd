@@ -39,8 +39,8 @@ var canmove = true
 @onready var pause = $Pause
 var paused: bool = false
 
+@onready var label = $Pause/MarginContainer/VBoxContainer/Label
 
-@onready var label = $Pause/Label
 
 
 func _enter_tree():
@@ -65,6 +65,7 @@ func _unhandled_input(event):
 	
 func _process(delta):
 	if not is_multiplayer_authority(): return
+	
 	label.text = "Join Code: " + Global.code
 	#print(pusername)
 	
